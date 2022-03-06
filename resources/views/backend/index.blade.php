@@ -41,6 +41,7 @@
                         <h6 class="collapse-header">Master Data</h6>
                         <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
                         <a class="collapse-item" href="{{ url('admin/produk') }}">Produk</a>
+                        <a class="collapse-item" href="{{ url('admin/about') }}">About</a>
                     </div>
                 </div>
             </li>
@@ -49,7 +50,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();"">
-                    <i class="         fas fa-fw fa-table"></i>
+                    <i class="          fas fa-fw fa-table"></i>
                     <span>Log out</span></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf

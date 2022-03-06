@@ -6,7 +6,6 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
-use Validator;
 
 class CategoryController extends Controller
 {

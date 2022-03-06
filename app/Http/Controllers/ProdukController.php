@@ -24,7 +24,7 @@ class ProdukController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('foto', function ($foto) {
-                    $img = '<img src="' . asset($foto->file) . '" width="100px" height="100px" />';
+                    $img = '<img src="' . asset('uploads/produk/' . $foto->file) . '" width="100px" height="100px" />';
 
                     return $img;
                 })
@@ -63,7 +63,7 @@ class ProdukController extends Controller
         ]);
 
         $file = $request->file;
-        $new_file = time() . $file->getClientOriginalName();
+        $new_file = Str::random() . $file->getClientOriginalName();
 
         Produk::create([
             'nama_produk' => $request->nama_produk,
@@ -90,6 +90,7 @@ class ProdukController extends Controller
 
 
         $data = [
+            'id' => $produk->id,
             'nama_produk' => $produk->nama_produk,
             'kategori_id' => $produk->kategori_id,
             'qty' => $produk->qty,
@@ -103,48 +104,45 @@ class ProdukController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = DB::table('produk')
-            ->join('kategori', 'kategori.id', '=', 'produk.kategori_id')
-            ->where('produk.id', '=', $id)
-            ->select('produk.*', 'kategori.nama_kategori')
-            ->first();
-        echo json_encode($data);
-        // request()->validate([
-        //     'nama_produk' => 'required|max:50',
-        //     'kategori_id' => 'required|max:50',
-        //     'qty' => 'required|numeric',
-        //     'harga' => 'required|numeric',
-        //     'keterangan' => 'required'
-        // ], [
-        //     'nama_produk.required' => 'Column Ini Wajib Diisi',
-        //     'nama_produk.max' => 'Maksimal 50 Karakter',
-        //     'kategori_id.required' => 'Column Ini Wajib Diisi',
-        //     'kategori_id.max' => 'Maksimal 50 Karakter',
-        //     'qty.required' => 'Column Ini Wajib Diisi',
-        //     'qty.numeric' => 'Harus Berbentuk Angka',
-        //     'harga.required' => 'Column Ini Wajib Diisi',
-        //     'harga.numeric' => 'Harus Berbentuk Angka',
-        //     'keterangan.required' => 'Column Ini Wajib Diisi'
-        // ]);
+        request()->validate([
+            'nama_produk' => 'required|max:50',
+            'kategori_id' => 'required|max:50',
+            'qty' => 'required|numeric',
+            'harga' => 'required|numeric',
+            'keterangan' => 'required'
+        ], [
+            'nama_produk.required' => 'Column Ini Wajib Diisi',
+            'nama_produk.max' => 'Maksimal 50 Karakter',
+            'kategori_id.required' => 'Column Ini Wajib Diisi',
+            'kategori_id.max' => 'Maksimal 50 Karakter',
+            'qty.required' => 'Column Ini Wajib Diisi',
+            'qty.numeric' => 'Harus Berbentuk Angka',
+            'harga.required' => 'Column Ini Wajib Diisi',
+            'harga.numeric' => 'Harus Berbentuk Angka',
+            'keterangan.required' => 'Column Ini Wajib Diisi'
+        ]);
 
-        // $produk =  Produk::findorfail($id);
+        $produk =  Produk::findorfail($id);
 
-        // if ($request->file != '') {
-        //     $file = $request->file;
-        //     $new_file = Str::random(16) . '.' . $file->extension();
-        //     $file->move('uploads/produk/', $new_file);
-        //     unlink('uploads/produk/' . $produk->file);
-        // }
-        // $produk->nama_produk = $request->nama_produk;
-        // $produk->kategori_id = $request->kategori_id;
-        // $produk->qty = $request->qty;
-        // $produk->harga = $request->harga;
-        // $produk->keterangan = $request->keterangan;
-        // $produk->file = $request->file != '' ? $new_file : $produk->file;
-        // $produk->save();
+        if ($request->has('file')) {
+            $file = $request->file;
+            $new_file = Str::random(16) . $file->getClientOriginalName();
+            $file->move('uploads/produk/', $new_file);
+
+            // if ($produk->file != '') {
+            //     unlink($produk->file);
+            // }
+        }
+        $produk->nama_produk = $request->nama_produk;
+        $produk->kategori_id = $request->kategori_id;
+        $produk->qty = $request->qty;
+        $produk->harga = $request->harga;
+        $produk->keterangan = $request->keterangan;
+        $produk->file = $request->file != '' ? $new_file : $produk->file;
+        $produk->save();
 
 
-        // echo json_encode(["status" => TRUE]);
+        echo json_encode(["status" => TRUE]);
     }
 
 
