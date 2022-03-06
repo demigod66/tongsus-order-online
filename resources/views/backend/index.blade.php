@@ -46,11 +46,26 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTow"
+                    aria-expanded="true" aria-controls="collapseTow">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Lainnya</span>
+                </a>
+                <div id="collapseTow" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Lainnya</h6>
+                        <a class="collapse-item" href="{{ url('admin/slider') }}">Slider</a>
+                    </div>
+                </div>
+            </li>
+
             <hr class="sidebar-divider my-0">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();"">
-                    <i class="          fas fa-fw fa-table"></i>
+                    <i class="                fas fa-fw fa-table"></i>
                     <span>Log out</span></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf

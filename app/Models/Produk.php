@@ -8,14 +8,13 @@ use Illuminate\Support\Facades\DB;
 class Produk extends Model
 {
     protected $table = 'produk';
-    protected $hidden = ['id'];
     protected $fillable = [
         'nama_produk',
         'kategori_id',
         'harga',
         'qty',
         'keterangan',
-        'file',
+        'foto_produk',
     ];
 
 

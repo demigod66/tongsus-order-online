@@ -15,8 +15,8 @@ class AboutController extends Controller
         if (Request()->ajax()) {
             return DataTables::of($about)
                 ->addIndexColumn()
-                ->addColumn('foto', function ($foto) {
-                    $img = '<img src="' . asset($foto->file) . '" width="100px" height="100px" />';
+                ->addColumn('foto_deskripsi', function ($foto) {
+                    $img = '<img src="' . asset($foto->foto_deskripsi) . '" width="100px" height="100px" />';
 
                     return $img;
                 })
@@ -28,7 +28,7 @@ class AboutController extends Controller
 
                     return $btn;
                 })
-                ->rawColumns(['action', 'foto'])
+                ->rawColumns(['action', 'foto_deskripsi'])
                 ->make(true);
         }
         return view('admin.about.index');
@@ -39,22 +39,22 @@ class AboutController extends Controller
     {
         request()->validate([
             'deskripsi' => 'required',
-            'file' => 'required'
+            'foto_deskripsi' => 'required'
         ], [
             'deskripsi.required' => 'column ini wajib diisi',
-            'file.required' => 'column ini wajib diisi'
+            'foto_deskripsi.required' => 'column ini wajib diisi'
         ]);
 
-        $file = $request->file;
-        $new_file = Str::random() . $file->getClientOriginalName();
+        $foto = $request->foto_deskripsi;
+        $new_foto = time() . $foto->getClientOriginalName();
 
         About::create([
             'deskripsi' => $request->deskripsi,
-            'file' => 'uploads/about/' . $new_file,
+            'foto_deskripsi' => 'uploads/about/' . $new_foto,
         ]);
 
 
-        $file->move('uploads/about/', $new_file);
+        $foto->move('uploads/about/', $new_foto);
 
         echo json_encode(["status" => TRUE]);
     }
@@ -78,21 +78,20 @@ class AboutController extends Controller
             'deskripsi.required' => 'column ini wajib diisi'
         ]);
 
-        $about =  About::findorfail($id);
+        if ($request->foto_deskripsi != '') {
+            $foto = $request->foto_deskripsi;
+            $new_foto = time() . $foto->getClientOriginalName();
+            $foto->move('uploads/about/', $new_foto);
+            $about = About::findorfail($id);
 
-        if ($request->has('file')) {
-            $file = $request->file;
-            $new_file = Str::random(16) . $file->getClientOriginalName();
-            $file->move('uploads/about/', $new_file);
-
-            // if ($produk->file != '') {
-            //     unlink($produk->file);
-            // }
+            $about_data['foto_deskripsi'] = 'uploads/about/' . $new_foto;
+            About::whereId($id)->update($about_data);
+            unlink($about->foto_deskripsi);
         }
-        $about->deskripsi = $request->deskripsi;
-        $about->save();
-
-
+        $about_data = [
+            'deskripsi' => $request->deskripsi,
+        ];
+        About::whereId($id)->update($about_data);
         echo json_encode(["status" => TRUE]);
     }
 
@@ -100,6 +99,7 @@ class AboutController extends Controller
     {
         $about = About::findorfail($id);
         $about->delete();
+        unlink($about->foto_deskripsi);
 
         echo json_encode(["status" => TRUE]);
     }

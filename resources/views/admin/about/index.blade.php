@@ -51,8 +51,8 @@
                         name: 'deskripsi'
                     },
                     {
-                        data: 'foto',
-                        name: 'foto',
+                        data: 'foto_deskripsi',
+                        name: 'foto_deskripsi',
                         orderable: false,
                         searchable: false
                     },
@@ -75,7 +75,7 @@
             $('#id').val('');
             $('#form').trigger("reset");
             $('#modal-form').modal('show');
-            $('.modal-title').text('Tambah Kategori');
+            $('.modal-title').text('Tambah Data About');
         }
 
         function get(id) {
@@ -150,7 +150,7 @@
                 },
                 error: function(response) {
                     $('#nDeskripsiError').text(response.responseJSON.errors.deskripsi);
-                    $('#nFotoError').text(response.responseJSON.errors.file);
+                    $('#nFotoError').text(response.responseJSON.errors.foto_deskripsi);
                 }
             });
         }

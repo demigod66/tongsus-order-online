@@ -10,6 +10,6 @@ class About extends Model
     protected $table = 'about';
     protected $fillable = [
         'deskripsi',
-        'file'
+        'foto_deskripsi'
     ];
 }

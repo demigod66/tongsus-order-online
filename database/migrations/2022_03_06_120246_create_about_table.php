@@ -16,7 +16,18 @@ class CreateAboutTable extends Migration
         Schema::create('about', function (Blueprint $table) {
             $table->id();
             $table->text('deskripsi');
+            $table->string('foto_deskripsi');
             $table->timestamps();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('about');
     }
 }

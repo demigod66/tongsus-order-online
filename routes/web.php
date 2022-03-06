@@ -47,6 +47,12 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     Route::get('admin/about/edit/{id}', 'AboutController@edit');
     Route::post('/admin/about/update/{id}', 'Aboutcontroller@update');
     Route::get('/admin/about/destroy/{id}', 'AboutController@destroy');
+
+    Route::get('/admin/slider', 'SliderController@index');
+    Route::post('/admin/slider/store', 'SliderController@store');
+    Route::get('/admin/slider/edit/{id}', 'SliderController@edit');
+    Route::post('/admin/slider/update/{id}', 'SliderController@update');
+    Route::get('/admin/slider/destroy/{id}', 'SliderController@destroy');
 });
 
 

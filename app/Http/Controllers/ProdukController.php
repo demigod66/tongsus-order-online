@@ -23,8 +23,8 @@ class ProdukController extends Controller
         if (Request()->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('foto', function ($foto) {
-                    $img = '<img src="' . asset('uploads/produk/' . $foto->file) . '" width="100px" height="100px" />';
+                ->addColumn('foto_produk', function ($foto) {
+                    $img = '<img src="' . asset($foto->foto_produk) . '" width="100px" height="100px" />';
 
                     return $img;
                 })
@@ -36,7 +36,7 @@ class ProdukController extends Controller
 
                     return $btn;
                 })
-                ->rawColumns(['action', 'foto'])
+                ->rawColumns(['action', 'foto_produk'])
                 ->make(true);
         }
         return view('admin.produk.index', compact('kategori'));
@@ -49,7 +49,7 @@ class ProdukController extends Controller
             'kategori_id' => 'required|max:50',
             'qty' => 'required|numeric',
             'harga' => 'required|numeric',
-            'file' => 'required',
+            'foto_produk' => 'required',
             'keterangan' => 'required'
         ], [
             'nama_produk.required' => 'Column Ini Wajib Diisi',
@@ -58,23 +58,23 @@ class ProdukController extends Controller
             'qty.numeric' => 'Harus Berbentuk Angka',
             'harga.required' => 'Column Ini Wajib Diisi',
             'harga.numeric' => 'Harus Berbentuk Angka',
-            'file.required' => 'Column Ini Wajib Diisi',
+            'foto_produk.required' => 'Column Ini Wajib Diisi',
             'keterangan.required' => 'Column Ini Wajib Diisi'
         ]);
 
-        $file = $request->file;
-        $new_file = Str::random() . $file->getClientOriginalName();
+        $foto = $request->foto_produk;
+        $new_foto = time() . $foto->getClientOriginalName();
 
         Produk::create([
             'nama_produk' => $request->nama_produk,
             'kategori_id' => $request->kategori_id,
             'qty' => $request->qty,
             'harga' => $request->harga,
-            'file' => 'uploads/produk/' . $new_file,
+            'foto_produk' => 'uploads/produk/' . $new_foto,
             'keterangan' => $request->keterangan
         ]);
 
-        $file->move('uploads/produk', $new_file);
+        $foto->move('uploads/produk', $new_foto);
 
         echo json_encode(["status" => TRUE]);
     }
@@ -122,35 +122,33 @@ class ProdukController extends Controller
             'keterangan.required' => 'Column Ini Wajib Diisi'
         ]);
 
-        $produk =  Produk::findorfail($id);
+        if ($request->foto_produk != '') {
+            $foto = $request->foto_produk;
+            $new_foto = time() . $foto->getClientOriginalName();
+            $foto->move('uploads/produk/', $new_foto);
+            $produk = Produk::findorfail($id);
 
-        if ($request->has('file')) {
-            $file = $request->file;
-            $new_file = Str::random(16) . $file->getClientOriginalName();
-            $file->move('uploads/produk/', $new_file);
-
-            // if ($produk->file != '') {
-            //     unlink($produk->file);
-            // }
+            $produk_data['foto_produk'] = 'uploads/produk/' . $new_foto;
+            Produk::whereId($id)->update($produk_data);
+            unlink($produk->foto_produk);
         }
-        $produk->nama_produk = $request->nama_produk;
-        $produk->kategori_id = $request->kategori_id;
-        $produk->qty = $request->qty;
-        $produk->harga = $request->harga;
-        $produk->keterangan = $request->keterangan;
-        $produk->file = $request->file != '' ? $new_file : $produk->file;
-        $produk->save();
-
-
+        $produk_data = [
+            'nama_produk' => $request->nama_produk,
+            'kategori_id' => $request->kategori_id,
+            'qty' => $request->qty,
+            'harga' => $request->harga,
+            'keterangan' => $request->keterangan,
+        ];
+        Produk::whereId($id)->update($produk_data);
         echo json_encode(["status" => TRUE]);
     }
 
 
     public function destroy($id)
     {
-        $data = Produk::findorfail($id);
-        $data->delete();
-
+        $produk = Produk::findorfail($id);
+        $produk->delete();
+        unlink($produk->foto_produk);
         echo json_encode(["status" => TRUE]);
     }
 }

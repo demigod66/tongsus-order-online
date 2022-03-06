@@ -1,5 +1,5 @@
 @extends('backend.index')
-@section('sub-judul', 'Table Produk')
+@section('sub-judul', 'Tabel Slider')
 @section('content')
 
     <div class="row">
@@ -16,11 +16,8 @@
                         <thead>
                             <tr>
                                 <th width="10%">No</th>
-                                <th>Nama Produk</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
-                                <th>Kuantitas</th>
-                                <th>Foto Produk</th>
+                                <th>Nama Slider</th>
+                                <th>Foto</th>
                                 <th width="10%">Aksi</th>
                             </tr>
                         </thead>
@@ -32,39 +29,30 @@
         </div>
     </div>
 
-    @include('admin.produk.modal.tambah')
+    @include('admin.slider.modal.tambah')
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var typeSave;
+            let typeSave;
             table = $('#example2').DataTable({
                 processing: true,
                 serverside: true,
-                ajax: "{{ url('admin/produk') }}",
+                ajax: "{{ url('admin/slider') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'nama_produk',
-                        name: 'nama_produk'
+                        data: 'nama_slider',
+                        name: 'nama_slider'
                     },
                     {
-                        data: 'nama_kategori',
-                        name: 'nama_kategori'
-                    },
-                    {
-                        data: 'harga',
-                        name: 'harga',
-                        render: $.fn.dataTable.render.number(',', '.', 2, 'Rp.')
-                    },
-                    {
-                        data: 'qty',
-                        name: 'qty'
-                    },
-                    {
-                        data: 'foto_produk',
-                        name: 'foto_produk',
+                        data: 'foto_slider',
+                        name: 'foto_slider',
                         orderable: false,
                         searchable: false
                     },
@@ -87,24 +75,20 @@
             $('#id').val('');
             $('#form').trigger("reset");
             $('#modal-form').modal('show');
-            $('.modal-title').text('Tambah Data Produk');
+            $('.modal-title').text('Tambah Slider');
         }
 
         function get(id) {
             typeSave = 'update';
             $.ajax({
-                url: "{{ url('admin/produk/edit') }}" + "/" + id,
+                url: "{{ url('admin/slider/edit') }}" + "/" + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
                     $('[name="id"]').val(data.id);
-                    $('[name="nama_produk"]').val(data.nama_produk);
-                    $('[name="nama_kategori"]').val(data.nama_kategori);
-                    $('[name="qty"]').val(data.qty);
-                    $('[name="harga"]').val(data.harga);
-                    $('[name="keterangan"]').val(data.keterangan);
+                    $('[name="nama_slider"]').val(data.nama_slider);
                     $('#modal-form').modal('show');
-                    $('.modal-title').text('Edit Data Produk');
+                    $('.modal-title').text('Edit Data Slider');
                 },
 
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -129,9 +113,9 @@
             var url;
             var id = $('#id').val();
             if (typeSave == 'tambah') {
-                url = "{{ url('admin/produk/store') }}";
+                url = "{{ url('admin/slider/store') }}";
             } else {
-                url = "{{ url('admin/produk/update') }}" + "/" + id;
+                url = "{{ url('admin/slider/update') }}" + "/" + id;
             }
             $.ajax({
                 url: url,
@@ -159,15 +143,12 @@
 
                 },
                 error: function(response) {
-                    $('#nProdukError').text(response.responseJSON.errors.nama_produk);
-                    $('#nKategoriError').text(response.responseJSON.errors.nama_kategori);
-                    $('#nFotoError').text(response.responseJSON.errors.foto_produk);
-                    $('#nQtyError').text(response.responseJSON.errors.qty);
-                    $('#nHargaError').text(response.responseJSON.errors.harga);
-                    $('#nKeteranganError').text(response.responseJSON.errors.keterangan);
+                    $('#nSliderError').text(response.responseJSON.errors.nama_slider);
+                    $('#nFotoError').text(response.responseJSON.errors.foto_slider);
                 }
             });
         }
+
 
 
         function hapus(id) {
@@ -183,8 +164,8 @@
                 buttons: true
             }).then(function() {
                 $.ajax({
-                    url: "{{ url('admin/produk/destroy') }}" + "/" + id,
-                    type: "get",
+                    url: "{{ url('admin/slider/destroy') }}" + "/" + id,
+                    type: "GET",
                     dataType: "JSON",
                     success: function() {
                         swal({

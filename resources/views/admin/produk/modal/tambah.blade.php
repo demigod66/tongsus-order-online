@@ -46,7 +46,8 @@
                     <div class="form-group row">
                         <label class="control-label col-md-12 col-sm-12 ">Foto Produk</label>
                         <div class="col-md-12 col-sm-12">
-                            <input type="file" name="file" id="file" class="form-control" accept=".jpg,.png,.jpeg">
+                            <input type="file" name="foto_produk" id="foto_produk" class="form-control"
+                                accept=".jpg,.png,.jpeg">
                             <span class="text-danger" id="nFotoError"></span>
                         </div>
                     </div>
