@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', 'FrontEndController@index');
+Route::get('/halaman', 'FrontEndController@halaman');
+Route::get('/halaman/home', 'FrontEndController@home');
+Route::get('/halaman/produk', 'FrontEndController@produk');
+Route::get('/halaman/about/', 'FrontEndController@about');
 
 
 Route::group(['middleware' => ['role:super-admin']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin/dashboard', function () {
         return view('backend.index');
     });

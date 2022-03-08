@@ -1,100 +1,11 @@
 @include('frontend.header')
-<!-- END nav -->
-@if (request()->is('halaman/home'))
-    @include('frontend.slider')
-@endif
-
-<section class="ftco-intro">
-    <div class="col-12">
-        <div class="container-wrap">
-            <div class="wrap d-md-flex align-items-xl-end">
-                <div class="info">
-                    <div class="row no-gutters">
-                        <div class="col-md-4 d-flex ftco-animate">
-                            <div class="icon"><span class="icon-phone"></span></div>
-                            <div class="text">
-                                <h3>000 (123) 456 7890</h3>
-                                <p>A small river named Duden flows by their place and supplies.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-flex ftco-animate">
-                            <div class="icon"><span class="icon-my_location"></span></div>
-                            <div class="text">
-                                <h3>198 West 21th Street</h3>
-                                <p> 203 Fake St. Mountain View, San Francisco, California, USA</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-flex ftco-animate">
-                            <div class="icon"><span class="icon-clock-o"></span></div>
-                            <div class="text">
-                                <h3>Open Monday-Friday</h3>
-                                <p>8:00am - 9:00pm</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@if (request()->is('halaman/home'))
-    @include('frontend.about')
-@endif
-
-<section class="ftco-section ftco-services">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 ftco-animate">
-                <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                        <span class="flaticon-choices"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Easy to Order</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                        <span class="flaticon-delivery-truck"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Fastest Delivery</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                        <span class="flaticon-coffee-bean"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Quality Coffee</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
 
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
-                <span class="subheading">Discover</span>
-                <h2 class="mb-4">Best Coffee Sellers</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live the blind texts.</p>
+                <span class="subheading">Cari Tahu Tentang</span>
+                <h2 class="mb-4">Produk Kami</h2>
             </div>
         </div>
         <div class="row">
@@ -106,20 +17,16 @@
                         <div class="text text-center pt-4">
                             <h3><a href="#">{{ $pr->nama_produk }}</a></h3>
                             <p>{{ $pr->keterangan }}</p>
-                            <p class="price"><span>Rp.{{ $pr->harga }}</span></p>
-                            <p><a href="#" class="btn btn-primary btn-outline-primary">Tambah Ke Keranjang</a></p>
+                            <p class="price"><span>$5.90</span></p>
+                            <p><a href="#" class="btn btn-primary btn-outline-primary">Pilih Produk</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-
     </div>
 </section>
-
-
-
-
 <footer class="ftco-footer ftco-section img">
     <div class="overlay"></div>
     <div class="container">
@@ -197,11 +104,13 @@
 
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
                     </script> All rights reserved | This template is made with <i
                         class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                        target="_blank">Colorlib</a>
+                        target="_blank">Colorlib</a>.Downloaded from <a href="https://themeslab.org/"
+                        target="_blank">Themeslab</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>
@@ -219,4 +128,11 @@
     </svg></div>
 
 
+
+<script src="{{ asset('frontend/js/scrollax.min.js') }}"></script>
+
+
 @include('frontend.footer')
+</body>
+
+</html>
