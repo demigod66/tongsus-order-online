@@ -17,6 +17,11 @@ class Produk extends Model
         'foto_produk',
     ];
 
+    public function Keranjang()
+    {
+        return $this->hasOne('App\Models\Keranjang');
+    }
+
 
     public function getKategori()
     {

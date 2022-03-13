@@ -15,26 +15,30 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', 'FrontEndController@index');
-Route::get('/halaman', 'FrontEndController@halaman');
-Route::get('/halaman/home', 'FrontEndController@home');
-Route::get('/halaman/produk', 'FrontEndController@produk');
-Route::get('/halaman/about/', 'FrontEndController@about');
+// Route::get('/halaman', 'FrontEndController@halaman');
+// Route::get('/halaman/home', 'FrontEndController@home');
+// Route::get('/halaman/produk', 'FrontEndController@produk');
+// Route::get('/halaman/about/', 'FrontEndController@about');
 
+
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/halaman/produk/detail/{id}', 'FrontEndController@detail_produk');
+    Route::post('/tambah-keranjang', 'KeranjangController@tambahKeranjang');
+    Route::get('/lihat-keranjang', 'KeranjangController@lihatKeranjang');
+});
 
 Route::group(['middleware' => ['role:super-admin']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+
     Route::get('/admin/dashboard', function () {
         return view('backend.index');
     });
-
-
-
+    Route::get('/home', 'HomeController@index')->name('home');
     // kategori
     Route::resource('/admin/kategori', 'CategoryController');
     Route::post('admin/kategori/update/{id}', 'CategoryController@update');
-
     // produk
-
     Route::get('/admin/produk', 'ProdukController@index');
     Route::post('/admin/produk/store', 'ProdukController@store');
     Route::get('/admin/produk/edit/{id}', 'ProdukController@edit');

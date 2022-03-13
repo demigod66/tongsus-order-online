@@ -2,63 +2,29 @@
 <html lang="en">
 
 <head>
-    <title>Tong Susu Pekanbaru</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tomato Responsive Restaurant HTML5 Template</title>
+    <meta name="author" content="Surjith S M">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <!-- SEO -->
+    <meta name="description" content="Tomato is a Responsive HTML5 Template for Restaurants and food related services.">
+    <meta name="keywords" content="tomato, responsive, html5, restaurant, template, food, reservation">
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/open-iconic-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{{ asset('frontend/img/favicon.ico') }}">
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
+    <!-- Responsive Tag -->
+    <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/aos.css') }}">
+    <!-- CSS Files -->
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/plugin.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}">
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/jquery.timepicker.css') }}">
 
-
-    <link rel="stylesheet" href="{{ asset('frontend/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/icomoon.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 </head>
-
-<body>
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Tong<small>Susu</small></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-                    <li class="nav-item"><a href="{{ url('halaman/about') }}" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ url('halaman/produk') }}"
-                            class="nav-link">Produk</a>
-                    </li>
-                    <li class="nav-item active"><a href="{{ route('login') }}" class="nav-link">Login</a>
-                    </li>
-                    </li>
-                    @role('user')
-                        <li class="nav-item cart"><a href="cart.html" class="nav-link"><span
-                                    class="icon icon-shopping_cart"></span><span
-                                    class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a>
-                        </li>
-                    @endrole
-                </ul>
-            </div>
-        </div>
-    </nav>
