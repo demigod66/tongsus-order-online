@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <h1>Tentang Kami</h1>
-                <p>{{ $about->deskripsi }}</p>
+                <p>{!! $about->deskripsi !!}</p>
                 <a href="./about.html">Read more &rarr;</a>
             </div>
             <div class="col-md-4  col-sm-6">

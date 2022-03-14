@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/halaman/produk/detail/{id}', 'FrontEndController@detail_produk');
     Route::post('/tambah-keranjang', 'KeranjangController@tambahKeranjang');
     Route::get('/lihat-keranjang', 'KeranjangController@lihatKeranjang');
+    Route::post('/remove-keranjang', 'KeranjangController@removekeranjang');
+    Route::post('/update-keranjang', 'KeranjangController@updatekeranjang');
+    // Route::get('orders', 'KeranjangController@show');
+    // Route::resource('orders', OrderController::class)->only(['index', 'show']);
 });
 
 Route::group(['middleware' => ['role:super-admin']], function () {

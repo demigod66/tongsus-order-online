@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-8">
                     <p>
-                        {{ $about->deskripsi }}
+                        {!! $about->deskripsi !!}
                     </p>
                 </div>
             </div>

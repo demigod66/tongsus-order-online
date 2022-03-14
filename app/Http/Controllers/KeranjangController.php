@@ -8,6 +8,7 @@ use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Services\Midtrans\CreateSnapTokenService;
 
 class KeranjangController extends Controller
 {
@@ -40,11 +41,34 @@ class KeranjangController extends Controller
     public function lihatKeranjang()
     {
         $user_id = Auth::id();
+        $cek_keranjang = DB::table('keranjang')->where('user_id', $user_id)->count();
         $keranjang = DB::table('keranjang')
             ->join('produk', 'produk.id', '=', 'keranjang.prod_id')
-            ->where('id', $user_id)
+            ->where('user_id', $user_id)
             ->get();
         $about = About::where('id', 3)->first();
-        return view('frontend.produk.keranjang', compact('about', 'keranjang'));
+
+        return view('frontend.produk.keranjang', compact('about', 'keranjang', 'cek_keranjang'));
+    }
+
+    public function removekeranjang(){
+        $produk_id = Request()->id;
+        $user_id = Auth::id();
+
+        DB::table('keranjang')
+        ->where('user_id', $user_id)
+        ->where('prod_id', $produk_id)
+        ->delete();
+    }
+
+    public function updatekeranjang(){
+        $produk_id = Request()->id;
+        $qty = Request()->qty;
+        $user_id = Auth::id();
+
+        DB::table('keranjang')
+        ->where('user_id', $user_id)
+        ->where('prod_id', $produk_id)
+        ->update(['prod_qty' => $qty]);
     }
 }

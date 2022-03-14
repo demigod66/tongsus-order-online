@@ -19,7 +19,7 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Beranda</a></li>
+                            <li><a href="{{ url('/') }}">Beranda</a></li>
                             <li><a href="#">Produk</a></li>
                             <li><a href="#">Contact</a></li>
                             @if (Auth::guest())

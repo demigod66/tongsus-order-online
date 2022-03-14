@@ -30,9 +30,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-12 col-sm-12 ">Kuantitas</label>
+                        <label class="control-label col-md-12 col-sm-12 ">Qty Produk</label>
                         <div class="col-md-12 col-sm-12">
-                            <input type="text" name="qty" id="qty" class="form-control">
+                            <input type="text" class="form-control" id="qty" name="qty">
                             <span class="text-danger" id="nQtyError"></span>
                         </div>
                     </div>
