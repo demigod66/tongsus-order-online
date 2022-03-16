@@ -1,5 +1,6 @@
 @extends('frontend.template')
 @section('content')
+
 <!-- Cart Table -->
 <section class="shop-content" style="margin-top: 25px;">
     <div class="container">
@@ -69,63 +70,14 @@
                     </tbody>
                 </table>
 
-                <!-- <div class="cart_totals">
-                    <div class="col-md-6 push-md-6 no-padding">
-                        <h4 class="text-left">Cart Totals</h4>
-                        <br>
-                        <table class="table table-bordered col-md-6">
-                            <tbody>
-                                <tr>
-                                    <th>Cart Subtotal</th>
-                                    <td><span class="amount">£190.00</span></td>
-                                </tr>
-                                <tr>
-                                    <th>Shipping and Handling</th>
-                                    <td>
-                                        Free Shipping
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Order Total</th>
-                                    <td><strong><span class="amount">£190.00</span></strong> </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div> -->
+                <form id="payment-form" method="POST" action="{{ url('finish') }}">
+                    @csrf
+                    <input type="hidden" name="result_json" id="result_json" value=""></div>
+                </form>
             </div>
         </div>
     </div>
 </section>
-
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
-<script>
-    const payButton = document.querySelector('#pay-button');
-    payButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        snap.pay('{{ $snapToken }}', {
-                // Optional
-                onSuccess: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
-                },
-                // Optional
-                onPending: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
-                },
-                // Optional
-                onError: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
-                }
-            });
-    });
-</script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -161,6 +113,38 @@
             })
         })
     })
+</script>
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+<script>
+    const payButton = document.querySelector('#pay-button');
+    payButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        snap.pay('{{ $snapToken }}', {
+                // Optional
+                onSuccess: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result_json').innerHTML += JSON.stringify(result, null, 2);
+                    $('#result_json').val(JSON.stringify(result));
+                    $('#payment-form').submit();
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result_json').innerHTML += JSON.stringify(result, null, 2);
+                    $('#result_json').val(JSON.stringify(result));
+                    $('#payment-form').submit();
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result_json').innerHTML += JSON.stringify(result, null, 2);
+                    $('#result_json').val(JSON.stringify(result));
+                    $('#payment-form').submit();
+                }
+            });
+    });
 </script>
 
 @endsection

@@ -32,7 +32,7 @@
                     <p>{{ $produk->keterangan }}</p>
                     <div class="quantity">
                         <input type="hidden" value="{{ $produk->id }}" class="prod_id">
-                        <input type="number" class="qty_input" placeholder="1">
+                        <input type="number" class="qty_input" placeholder="1" value="1" max="{{ $produk->qty }}">
                         <a href="./shop_checkout.html" class="btn btn-success left-space-sm pull-right">Beli</a>
                         <button type="button" class="btn btn-warning addToCartBtn left-space-sm pull-right">Tambah
                             Keranjang</button>

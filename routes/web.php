@@ -29,8 +29,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/lihat-keranjang', 'KeranjangController@lihatKeranjang');
     Route::post('/remove-keranjang', 'KeranjangController@removekeranjang');
     Route::post('/update-keranjang', 'KeranjangController@updatekeranjang');
-    // Route::get('orders', 'KeranjangController@show');
-    // Route::resource('orders', OrderController::class)->only(['index', 'show']);
+    Route::post('/finish', 'KeranjangController@finish');
+
+    Route::get('akun', 'AkunController@index');
+    Route::get('akun/pesanan', 'AkunController@pesanan');
+    Route::get('akun/pesanan/{no_trans}', 'AkunController@detail');
 });
 
 Route::group(['middleware' => ['role:super-admin']], function () {
