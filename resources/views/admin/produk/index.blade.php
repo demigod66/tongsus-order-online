@@ -158,14 +158,14 @@
                     }
 
                 },
-                error: function(response) {
-                    $('#nProdukError').text(response.responseJSON.errors.nama_produk);
-                    $('#nKategoriError').text(response.responseJSON.errors.nama_kategori);
-                    $('#nFotoError').text(response.responseJSON.errors.foto_produk);
-                    $('#nQtyError').text(response.responseJSON.errors.qty);
-                    $('#nHargaError').text(response.responseJSON.errors.harga);
-                    $('#nKeteranganError').text(response.responseJSON.errors.keterangan);
-                }
+                // error: function(response) {
+                //     $('#nProdukError').text(response.responseJSON.errors.nama_produk);
+                //     $('#nKategoriError').text(response.responseJSON.errors.nama_kategori);
+                //     $('#nFotoError').text(response.responseJSON.errors.foto_produk);
+                //     $('#nQtyError').text(response.responseJSON.errors.qty);
+                //     $('#nHargaError').text(response.responseJSON.errors.harga);
+                //     $('#nKeteranganError').text(response.responseJSON.errors.keterangan);
+                // }
             });
         }
 

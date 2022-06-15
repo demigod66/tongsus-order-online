@@ -15,7 +15,7 @@ class FrontEndController extends Controller
     public function index()
     {
         $produk = Produk::paginate(3);
-        $about = About::where('id', 3)->first();
+        $about = About::where('id', 1)->first();
 
         return view('frontend.home', compact('produk', 'about'));
     }
@@ -48,7 +48,7 @@ class FrontEndController extends Controller
 
     public function detail_produk($id)
     {
-        $about = About::where('id', 3)->first();
+        $about = About::where('id', 1)->first();
         $produk = Produk::where('id', $id)->first();
         return view('frontend.produk.detail', compact('produk', 'about'));
     }

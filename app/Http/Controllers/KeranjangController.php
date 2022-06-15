@@ -48,7 +48,7 @@ class KeranjangController extends Controller
         }
 
         $keranjang = DB::table('keranjang')->join('produk', 'produk.id', '=', 'keranjang.prod_id')->where('user_id', $user_id)->get();
-        $about = About::where('id', 3)->first();
+        $about = About::where('id', 1)->first();
         $midtrans = new CreateSnapTokenService();
         $snapToken = $midtrans->getSnapToken();
 

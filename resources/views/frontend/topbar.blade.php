@@ -29,6 +29,11 @@
                         @if (Auth::check())
                         <li><a href="{{ url('/lihat-keranjang') }}">Keranjang</a></li>
                         <li><a href="{{ url('akun/pesanan ') }}">Akun</a></li>
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form></li>
                         @endif
                     </ul>
                 </div>
