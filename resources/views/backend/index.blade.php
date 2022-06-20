@@ -42,6 +42,7 @@
                         <a class="collapse-item" href="{{ route('kategori.index') }}">Kategori</a>
                         <a class="collapse-item" href="{{ url('admin/produk') }}">Produk</a>
                         <a class="collapse-item" href="{{ url('admin/about') }}">About</a>
+                        <a class="collapse-item" href="{{ url('admin/detail-transaksi') }}">Transaksi</a>
                     </div>
                 </div>
             </li>
