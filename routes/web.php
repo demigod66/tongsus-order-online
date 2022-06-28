@@ -19,6 +19,7 @@ Route::get('/', 'FrontEndController@index');
 // Route::get('/halaman/home', 'FrontEndController@home');
 // Route::get('/halaman/produk', 'FrontEndController@produk');
 // Route::get('/halaman/about/', 'FrontEndController@about');
+Route::get('/halaman/list-produk','FrontEndController@list_produk');
 
 
 

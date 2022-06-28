@@ -80,7 +80,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <a href="./index.html" class="btn btn-default load-more">Load more</a>
+                    <a href="{{ url('halaman/list-produk')}}" class="btn btn-default load-more">Load more</a>
                 </div>
             </div>
         </div>

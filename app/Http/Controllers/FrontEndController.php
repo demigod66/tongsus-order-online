@@ -46,6 +46,12 @@ class FrontEndController extends Controller
     //     return view('frontend.about.about', compact('about'));
     // }
 
+    public function list_produk(){
+        $about = About::where('id', 1)->first();
+        $produk = Produk::all();
+        return view('frontend.produk.list-produk', compact('produk','about'));
+    }
+
     public function detail_produk($id)
     {
         $about = About::where('id', 1)->first();
