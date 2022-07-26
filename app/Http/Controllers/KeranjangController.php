@@ -76,6 +76,7 @@ class KeranjangController extends Controller
 
         $transaksi = Transaksi::create([
             'no_transaksi' => $result['order_id'],
+            'nama_produk' => $result['prod_id'],
             'user_id' => Auth::id(),
             'subtotal' => substr($result['gross_amount'], 0, -3),
             'status' => $result['transaction_status'],
@@ -99,7 +100,6 @@ class KeranjangController extends Controller
             DB::table('produk')->where('id', $transaksi_detail->id_produk)->decrement('qty', $transaksi_detail->qty);
         }
 
-        DB::table('keranjang')->where('user_id', Auth::id())->delete();
 
         return redirect('akun/pesanan/'.$result['order_id']);
     }

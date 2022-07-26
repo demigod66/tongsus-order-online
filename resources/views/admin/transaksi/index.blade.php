@@ -14,7 +14,9 @@
                             <tr>
                                 <th width="10%">No</th>
                                 <th>No Transaksi</th>
+                                <th>Produk</th>
                                 <th>User</th>
+                                <th>no_telp</th>
                                 <th>Subtotal</th>
                                 <th>Status</th>
                                 <th>Bank</th>
@@ -24,8 +26,10 @@
                             @foreach ( $data as $trans )
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $trans->produk->nama_produk }}</td>
                                 <td>{{ $trans->no_transaksi }}</td>
                                 <td>{{ $trans->user->name }}</td>
+                                <td>{{ $trans->user->no_telp }}</td>
                                 <td>{{ $trans->subtotal }}</td>
                                 <td>{{ $trans->status }}</td>
                                 <td>{{ $trans->type_bank }}</td>

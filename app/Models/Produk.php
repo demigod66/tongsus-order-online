@@ -33,4 +33,9 @@ class Produk extends Model
 
         return $query;
     }
+
+
+    public function produk(){
+        return $this->hasOne('App\Models\Transaksi');
+     }
 }
