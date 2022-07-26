@@ -42,6 +42,11 @@ class PermissionDemoSeeder extends Seeder
         $userRole->givePermissionTo('buy product');
 
 
+        $userRole = Role::create(['name' => 'user']);
+        $userRole->givePermissionTo('view product');
+        $userRole->givePermissionTo('buy product');
+
+
         $superadminRole = Role::create(['name' => 'super-admin']);
 
 
@@ -58,5 +63,13 @@ class PermissionDemoSeeder extends Seeder
             'password' => bcrypt('12345678')
         ]);
         $user->assignRole($superadminRole);
+
+
+        $user = User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@tongsus.id',
+            'password' => bcrypt('12345678')
+        ]);
+        $user->assignRole($owneRole);
     }
 }

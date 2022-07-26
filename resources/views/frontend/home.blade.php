@@ -69,7 +69,7 @@
                                         <div class="product-img">
                                             <img src="{{ asset($pr->foto_produk) }}" width="240" height="240" alt="" />
                                         </div>
-                                        <h4><a href="./recipe_detail-image.html">{{ $pr->nama_produk }}</a></h4>
+                                        <h4><a href="">{{ $pr->nama_produk }}</a></h4>
                                         <div class="product-price">{{ $pr->harga }}</div>
                                         <div class="shop-meta">
                                             <a href="{{ url('halaman/produk/detail', $pr->id) }}"

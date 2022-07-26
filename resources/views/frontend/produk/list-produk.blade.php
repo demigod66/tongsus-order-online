@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header wow fadeInDown">
-                    <h1>Grid View<small>These fine folks trusted the award winning restaurant.</small></h1>
+                    <h1>Tampilan Semua Produk</h1>
                 </div>
             </div>
         </div>
@@ -17,8 +17,6 @@
             </div>
             <div class="row menu-items4">
                 @foreach ( $produk as $prod )
-
-
                 <div class="menu-item4 col-sm-4 col-xs-12 starter dinner desserts">
                     <div class="menu-info">
                         <img src="{{  asset($prod->foto_produk) }}" class="img-responsive" alt="" />

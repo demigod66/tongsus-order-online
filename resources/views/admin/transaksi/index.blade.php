@@ -25,7 +25,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $trans->no_transaksi }}</td>
-                                <td>{{ $trans->user_id }}</td>
+                                <td>{{ $trans->user->name }}</td>
                                 <td>{{ $trans->subtotal }}</td>
                                 <td>{{ $trans->status }}</td>
                                 <td>{{ $trans->type_bank }}</td>

@@ -4,56 +4,6 @@
             <div class="col-md-4 col-sm-12">
                 <h1>Tentang Kami</h1>
                 <p>{!! $about->deskripsi !!}</p>
-                <a href="./about.html">Read more &rarr;</a>
-            </div>
-            <div class="col-md-4  col-sm-6">
-                <h1>Recent post</h1>
-                <div class="footer-blog clearfix">
-                    <a href="./blog_right_sidebar.html">
-                        <img src="img/thumb8.png" class="img-responsive footer-photo" alt="blog photos">
-                        <p class="footer-blog-text">Hand picked ingredients for our best customers</p>
-                        <p class="footer-blog-date">29 may 2015</p>
-                    </a>
-                </div>
-                <div class="footer-blog clearfix last">
-                    <a href="./blog_right_sidebar.html">
-                        <img src="img/thumb9.png" class="img-responsive footer-photo" alt="blog photos">
-                        <p class="footer-blog-text">Daily special foods that you will going to love</p>
-                        <p class="footer-blog-date">29 may 2015</p>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-4  col-sm-6">
-                <h1>Reach us</h1>
-                <div class="footer-social-icons">
-                    <a href="http://www.facebook.com">
-                        <i class="fa fa-facebook-square"></i>
-                    </a>
-                    <a href="http://www.twitter.com">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="http://plus.google.com">
-                        <i class="fa fa-google"></i>
-                    </a>
-                    <a href="http://www.youtube.com">
-                        <i class="fa fa-youtube-play"></i>
-                    </a>
-                    <a href="http://www.vimeo.com">
-                        <i class="fa fa-vimeo"></i>
-                    </a>
-                    <a href="http://www.pinterest.com">
-                        <i class="fa fa-pinterest-p"></i>
-                    </a>
-                    <a href="http://www.linkedin.com">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                </div>
-                <div class="footer-address">
-                    <p><i class="fa fa-map-marker"></i>28 Seventh Avenue, Neew York, 10014</p>
-                    <p><i class="fa fa-phone"></i>Phone: (415) 124-5678</p>
-                    <p><i class="fa fa-envelope-o"></i>support@restaurant.com</p>
-                </div>
             </div>
         </div>
     </div>
